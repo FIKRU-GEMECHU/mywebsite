@@ -28,6 +28,7 @@ app.use((req, res, next) => {
     if (safe.password) safe.password = "***";
     console.log("   Body :", JSON.stringify(safe));
   }
+  
 
   // Log token owner if Authorization header present
   if (req.headers.authorization) {
