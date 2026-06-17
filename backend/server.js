@@ -34,7 +34,8 @@ app.use((req, res, next) => {
   if (req.headers.authorization) {
     console.log("   Auth : Bearer token present");
   }
-
+app.get("/favicon.ico", (req, res) => res.status(204));
+app.use(express.static("public"));
   // Intercept res.json to log the response
   const originalJson = res.json.bind(res);
   res.json = (data) => {
