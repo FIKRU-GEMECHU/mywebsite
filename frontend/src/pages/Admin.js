@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated, isAdmin } from "../Services/auth";
 
-const BASE = "http://localhost:5000/api";
+const BASE = "http://https://mywebsite-10.onrender.com/api";
 
 function Admin() {
   const navigate = useNavigate();

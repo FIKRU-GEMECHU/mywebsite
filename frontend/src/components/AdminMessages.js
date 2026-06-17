@@ -4,7 +4,7 @@ function AdminMessages() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/contacts")
+    fetch("http://https://mywebsite-10.onrender.com/api/contacts")
       .then((res) => res.json())
       .then((data) => setMessages(data));
   }, []);
