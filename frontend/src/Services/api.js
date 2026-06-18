@@ -1,4 +1,4 @@
-const BASE = "http://https://mywebsite-10.onrender.com/api";
+const BASE = "https://mywebsite-10.onrender.com/api";
 
 const headers = () => {
   const token = localStorage.getItem("token");

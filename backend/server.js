@@ -124,7 +124,7 @@ app.listen(PORT, () => {
   console.log("╠═══════════════════════════════════════════╣");
   console.log(`║  🚀 Status  : Running                     ║`);
   console.log(`║  🔌 Port    : ${PORT}                          ║`);
-  console.log(`║  📡 API     : http://localhost:${PORT}/api    ║`);
+  console.log(`║  📡 API     : http://https://fikrugemechu.netlify.app:${PORT}/api    ║`);
   console.log(`║  🗄️  Database: MongoDB Connected            ║`);
   console.log(`║  🕐 Time    : ${new Date().toLocaleTimeString()}                  ║`);
   console.log("╠═══════════════════════════════════════════╣");
