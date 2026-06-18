@@ -180,7 +180,7 @@ const forgotPassword = async (req, res) => {
     user.resetPasswordExpires = Date.now() + 60 * 60 * 1000; // 1 hour
     await user.save({ validateBeforeSave: false });
 
-    const resetURL = `${process.env.FRONTEND_URL || "http://https://fikrugemechu.netlify.app"}/reset-password/${rawToken}`;
+    const resetURL = `${process.env.FRONTEND_URL || "https://fikrugemechu.netlify.app"}/reset-password/${rawToken}`;
 
     try {
       await sendResetEmail(user.email, user.name, resetURL);
