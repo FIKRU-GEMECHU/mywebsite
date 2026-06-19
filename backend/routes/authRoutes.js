@@ -1,5 +1,6 @@
 const express = require("express");
-const router  = express.Router();
+const router = express.Router();
+
 const {
   registerUser,
   loginUser,
@@ -8,13 +9,23 @@ const {
   resetPassword,
   verifyResetToken,
 } = require("../controllers/authController");
+
 const { protect } = require("../middleware/authMiddleware");
 
-router.post("/register",                  registerUser);
-router.post("/login",                     loginUser);
-router.get("/me",          protect,       getMe);
-router.post("/forgot-password",           forgotPassword);
-router.get("/reset-password/:token",      verifyResetToken);
-router.post("/reset-password/:token",     resetPassword);
+// ── Auth Routes ─────────────────────────────
+router.post("/register", registerUser);
+router.post("/login", loginUser);
+
+// ── User Profile ────────────────────────────
+router.get("/me", protect, getMe);
+
+// ── Password Reset ──────────────────────────
+router.post("/forgot-password", forgotPassword);
+
+// optional verification (before reset)
+router.get("/reset-password/:token", verifyResetToken);
+
+// reset password submit
+router.post("/reset-password/:token", resetPassword);
 
 module.exports = router;

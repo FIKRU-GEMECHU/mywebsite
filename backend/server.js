@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require ("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 
@@ -11,13 +11,16 @@ connectDB();
 
 const app = express();
 
-/* ── CORS ── */
+/* ── CORS (LIVE SAFE) ── */
 app.use(cors({
   origin: [
     "http://localhost:3000",
-    "https://fikrugemechu.netlify.app",
-    "https://fikrugemechu.netlify.app/"
+    "https://fikrugemechu.netlify.app"
   ],
+  credentials: true
+}));
+app.use(cors({
+  origin: process.env.FRONTEND_URL,
   credentials: true
 }));
 
@@ -44,7 +47,7 @@ app.use("/api/goals", require("./routes/goalRoutes"));
 app.use("/api/business", require("./routes/businessRoutes"));
 app.use("/api/ai", require("./routes/aiRoutes"));
 
-/* ── Test Routes ── */
+/* ── Health Check ── */
 app.get("/", (req, res) => {
   res.json({ message: "Backend Running Successfully 🚀" });
 });
@@ -57,22 +60,18 @@ app.get("/api", (req, res) => {
 app.use(notFound);
 app.use(errorHandler);
 
-/* ── START SERVER (PROPER LOCAL + LIVE FIX) ── */
-const PORT = process.env.PORT || 5000;
-
-const BASE_URL =
-  process.env.NODE_ENV === "production"
-    ? "https://mywebsite-7.onrender.com"
-    : `http://localhost:${PORT}`;
+/* ── START SERVER (RENDER READY) ── */
+const PORT = process.env.PORT;
 
 app.listen(PORT, "0.0.0.0", () => {
+  const BASE_URL = "https://mywebsite-7.onrender.com";
+
   console.log("\n╔═══════════════════════════════════════════╗");
   console.log("║     🌐 FIKRU PORTFOLIO BACKEND SERVER     ║");
   console.log("╠═══════════════════════════════════════════╣");
-  console.log(`║  🚀 Status  : ${process.env.NODE_ENV === "production" ? "LIVE" : "LOCAL"}        ║`);
+  console.log(`║  🚀 Status  : LIVE                        ║`);
   console.log(`║  🔌 Port    : ${PORT}                          ║`);
   console.log(`║  📡 API     : ${BASE_URL}/api              ║`);
-  console.log("╠═══════════════════════════════════════════╣");
-  console.log(`║  🕐 Time    : ${new Date().toLocaleTimeString()}                  ║`);
   console.log("╚═══════════════════════════════════════════╝\n");
 });
+app.use("/api", require("./routes/authRoutes"));
